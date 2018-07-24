@@ -4,6 +4,17 @@ const ejs = require('ejs')
 const Nexmo = require('nexmo')
 const socketio = require('socket.io')
 
+//init Nexmo
+const nexmo = new Nexmo( 
+	{
+		apiKey: process.env.APIKEY || '',
+		apiSecret: process.env.APISECRET || '' 
+	},
+	{
+		debug: true
+	}
+)
+
 // init app
 const app = express()
 
@@ -26,8 +37,27 @@ app.get( '/', (req, res) => {
 
 // catch form submit
 app.post('/', (req, res) => {
+
+	const number = req.body.number
+	const text = req.body.text
+
+	nexmo.message.sendSMS(
+		process.env.VIRTUALNUMBER || '', // virtual number /dfrom=
+		number,
+		text,
+		{ type : 'unicode' },
+		(err, resData) => {
+			if(err) {
+				console.log(err) 
+			} else {
+				console.dir(resData)
+			}
+		}
+	)
+	/*
 	res.send(req.body)
 	console.log(req.body)
+	*/
 } )
 
 // define port
