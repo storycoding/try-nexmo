@@ -1,0 +1,26 @@
+{
+  "name": "try-nexmo",
+  "version": "1.0.0",
+  "description": "A nexmo API with nodeJS test",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/storycoding/try-nexmo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/storycoding/try-nexmo/issues"
+  },
+  "homepage": "https://github.com/storycoding/try-nexmo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "nexmo": "^2.3.2",
+    "socket.io": "^2.1.1"
+  }
+}
