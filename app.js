@@ -41,7 +41,7 @@ app.post('/', (req, res) => {
 	const number = req.body.number
 	const text = req.body.text
 
-	nexmo.message.sendSMS(
+	nexmo.message.sendSms(
 		process.env.VIRTUALNUMBER || '', // virtual number /dfrom=
 		number,
 		text,
@@ -54,10 +54,7 @@ app.post('/', (req, res) => {
 			}
 		}
 	)
-	/*
-	res.send(req.body)
 	console.log(req.body)
-	*/
 } )
 
 // define port
