@@ -51,6 +51,13 @@ app.post('/', (req, res) => {
 				console.log(err) 
 			} else {
 				console.dir(resData)
+
+				const data = {
+					id : resData.messages[0]['message-id'],
+					number : resData.messages[0]['to']
+				}
+
+				io.emit('smsStatus', data)
 			}
 		}
 	)
@@ -62,3 +69,14 @@ const PORT = process.env.PORT || 3000
 
 // start server
 const server = app.listen( PORT, () => console.log(`Server started on port ${PORT}`) )
+
+
+// socket.io setup
+const io = socketio(server)
+
+io.on( 'connection',
+	() => {
+		console.log('connected')
+		io.on( 'disconnect', () => console.log('Disconnected') )
+	}
+)
